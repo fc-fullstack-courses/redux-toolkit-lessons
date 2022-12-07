@@ -20,8 +20,8 @@ function mapStateToProps(state) {
   return state;
 }
 
-const withState = connect(mapStateToProps);
+// const withState = connect(mapStateToProps);
 
-const CounterWithState = withState(Counter);
+// const CounterWithState = withState(Counter);
 
-export default CounterWithState;
+export default connect(mapStateToProps)(Counter);
