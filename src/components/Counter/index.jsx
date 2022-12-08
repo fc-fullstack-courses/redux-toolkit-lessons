@@ -15,16 +15,18 @@ const Counter = (props) => {
           onChange={({ target: { value } }) => setStep(value)}
         />
       </label>
-      <button onClick={increment}>Increment</button>
-      <button onClick={decrement}>Decrement</button>
+      <button onClick={() => increment()}>Increment</button>
+      <button onClick={() => decrement()}>Decrement</button>
     </div>
   );
 };
 
 function mapStateToProps(state) {
+  // return state.counter;
   return {
-    count: state.count,
-    step: state.step,
+    // count: state.counter.count,
+    // step: state.counter.step,
+    ...state.counter,
   };
 }
 // v1
