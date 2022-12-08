@@ -4,8 +4,6 @@ import { increment, decrement } from '../../store/slices/counterSlice';
 
 const Counter = (props) => {
   const { count, step, dispatch } = props;
-  console.log(props);
-
   return (
     <div>
       <p>Count: {count}</p>
@@ -17,7 +15,10 @@ const Counter = (props) => {
 };
 
 function mapStateToProps(state) {
-  return state;
+  return {
+    count: state.count,
+    step: state.step,
+  };
 }
 
 // const withState = connect(mapStateToProps);
