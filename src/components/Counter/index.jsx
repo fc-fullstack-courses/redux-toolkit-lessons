@@ -5,6 +5,7 @@ import { increment, decrement, setStep } from '../../store/slices/counterSlice';
 import CONSTANTS from '../../constants';
 const {
   LANGUAGE: { EN_US, UA_UA },
+  LANGUAGE,
 } = CONSTANTS;
 
 const translations = new Map([
@@ -40,8 +41,11 @@ const Counter = (props) => {
         value={language}
         onChange={({ target: { value } }) => setLang(value)}
       >
-        <option value={EN_US.VALUE}>English</option>
-        <option value={UA_UA.VALUE}>Ukrainian</option>
+        {Object.values(LANGUAGE).map((langObj) => (
+          <option key={langObj.VALUE} value={langObj.VALUE}>
+            {langObj.OPTION_TEXT}
+          </option>
+        ))}
       </select>
       <p>
         {countText}: {count}
