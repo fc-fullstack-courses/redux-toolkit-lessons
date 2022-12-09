@@ -1,12 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import cx from 'classnames';
 import CONSTANTS from '../../constants';
 import { setTheme } from '../../store/slices/themeSlice';
 import styles from './Header.module.scss';
 const { THEMES } = CONSTANTS;
 
-function Header({ theme, setTheme, language }) {
+function Header(props) {
+  const theme = useSelector((state) => state.theme);
+
   const className = cx(styles.header, {
     [styles.darkTheme]: theme === THEMES.DARK,
     [styles.lightTheme]: theme === THEMES.LIGHTL,
@@ -29,17 +31,17 @@ function Header({ theme, setTheme, language }) {
   );
 }
 
-const mStP = (state) => {
-  return {
-    theme: state.theme,
-    language: state.lang,
-  };
-};
+// const mStP = (state) => {
+//   return {
+//     theme: state.theme,
+//     language: state.lang,
+//   };
+// };
 
-const mDtP = (dispatch) => {
-  return {
-    setTheme: () => dispatch(setTheme()),
-  };
-};
+// const mDtP = (dispatch) => {
+//   return {
+//     setTheme: () => dispatch(setTheme()),
+//   };
+// };
 
-export default connect(mStP, mDtP)(Header);
+export default Header;
