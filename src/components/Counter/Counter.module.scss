@@ -1,9 +1,9 @@
+@use '../../common/styles/templates';
+
 .darkTheme {
-  background-color: #444444;
-  color: white;
+  @extend %darkTheme;
 }
 
 .lightTheme {
-  background-color: white;
-  color: black;
+  @extend %lightTheme;
 }
