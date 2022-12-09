@@ -1,11 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import cx from 'classnames';
 import { setLang } from '../../store/slices/langSlice';
 import { increment, decrement, setStep } from '../../store/slices/counterSlice';
+import styles from './Counter.module.scss';
 import CONSTANTS from '../../constants';
 const {
   LANGUAGE: { EN_US, UA_UA },
   LANGUAGE,
+  THEMES,
 } = CONSTANTS;
 
 const translations = new Map([
@@ -30,13 +33,27 @@ const translations = new Map([
 ]);
 
 const Counter = (props) => {
-  const { count, step, language, increment, decrement, setStep, setLang } =
-    props;
+  const {
+    count,
+    step,
+    language,
+    theme,
+    increment,
+    decrement,
+    setStep,
+    setLang,
+  } = props;
 
   const translation = translations.get(language);
   const { countText, stepText, incrementText, decrementText } = translation;
+
+  const className = cx({
+    [styles.darkTheme]: theme === THEMES.DARK,
+    [styles.lightTheme]: theme === THEMES.LIGHTL,
+  });
+
   return (
-    <div>
+    <div className={className}>
       <select
         value={language}
         onChange={({ target: { value } }) => setLang(value)}
@@ -65,12 +82,10 @@ const Counter = (props) => {
 };
 
 function mapStateToProps(state) {
-  // return state.counter;
   return {
-    // count: state.counter.count,
-    // step: state.counter.step,
     ...state.counter,
     language: state.lang,
+    theme: state.theme,
   };
 }
 // v1
