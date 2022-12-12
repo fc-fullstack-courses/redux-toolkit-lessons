@@ -7,7 +7,7 @@ function UserList(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUsers());
+    dispatch(getUsers('Hello there'));
   }, []);
 
   return (
