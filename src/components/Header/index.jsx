@@ -4,10 +4,12 @@ import cx from 'classnames';
 import CONSTANTS from '../../constants';
 import { setTheme } from '../../store/slices/themeSlice';
 import styles from './Header.module.scss';
+import { Link } from 'react-router-dom';
 const { THEMES } = CONSTANTS;
 
 function Header(props) {
   const theme = useSelector((state) => state.theme);
+  const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const className = cx(styles.header, {
@@ -20,13 +22,23 @@ function Header(props) {
       <h1>My Site</h1>
       <nav>
         <ul className={styles.navList}>
-          <li className={styles.navListItem}>Link 1</li>
-          <li className={styles.navListItem}>Link 2</li>
-          <li className={styles.navListItem}>Link 3</li>
+          <li className={styles.navListItem}>
+            <Link to="/">Home</Link>
+          </li>
+          <li className={styles.navListItem}>
+            <Link to="/registration">Register</Link>
+          </li>
+          <li className={styles.navListItem}>
+            <Link to="/login">Login</Link>
+          </li>
+          <li className={styles.navListItem}>
+            <Link to="/counter">Counter</Link>
+          </li>
         </ul>
       </nav>
       <div>
         <button onClick={() => dispatch(setTheme())}>Switch Theme</button>
+        {user && <p>Hello {user.nickName}</p>}
       </div>
     </header>
   );
