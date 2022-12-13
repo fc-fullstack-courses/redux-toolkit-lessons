@@ -8,7 +8,9 @@ const getUsers = createAsyncThunk(
   async (arg, thunkAPI) => {
     try {
       console.log(`arg is ${arg}`);
-      const { data: users } = await API.getUsers(arg);
+      const {
+        data: { data: users },
+      } = await API.getUsers(arg);
 
       return users;
     } catch (error) {
@@ -34,11 +36,11 @@ const usersSlice = createSlice({
     });
     builder.addCase(getUsers.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.users = action.payload;
+      state.users = action.payload; // users
     });
     builder.addCase(getUsers.rejected, (state, action) => {
       state.isLoading = false;
-      state.error = action.payload;
+      state.error = action.payload; // параметр из rejectWithValue
     });
   },
 });
