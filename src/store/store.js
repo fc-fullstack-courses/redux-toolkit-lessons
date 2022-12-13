@@ -3,6 +3,7 @@ import counterReducer from './slices/counterSlice';
 import langReducer from './slices/langSlice';
 import themeReducer from './slices/themeSlice';
 import usersReducer from './slices/usersSlice';
+import authReducer from './slices/authSlice';
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     lang: langReducer,
     theme: themeReducer,
     users: usersReducer,
+    auth: authReducer,
   },
 });
 export default store;
